@@ -50,7 +50,7 @@ const indianCarpets = [
 
 const Gallery = () => {
   return (
-    <main className="px-5 lg:px-20 lg:pt-40 lg:pb-28 flex flex-col gap-16">
+    <main className="px-5 pt-32 pb-20 lg:px-20 lg:pt-40 lg:pb-28 flex flex-col gap-16">
       {/* Tibetan Carpets Section */}
 
       <section className="text-center max-w-3xl mx-auto flex flex-col gap-4">
