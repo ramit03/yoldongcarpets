@@ -4,6 +4,11 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
 // Carpet data
 const carpets = [
@@ -39,7 +44,7 @@ const FeaturedCarpets = () => {
     <section className="px-5 py-20 lg:px-20 lg:py-28 flex flex-col gap-8 lg:gap-12">
       <h1>Featured Carpets</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
+      <div className="hidden lg:grid grid-cols-4 gap-6 lg:gap-4">
         {carpets.slice(0, 5).map((carpet, index) => (
           <div
             key={index}
@@ -59,6 +64,30 @@ const FeaturedCarpets = () => {
           </div>
         ))}
       </div>
+
+      <Carousel opts={{ align: "start" }} className="lg:hidden">
+        <CarouselContent className="flex -ml-2">
+          {carpets.slice(0, 5).map((carpet, index) => (
+            <CarouselItem key={index} className="basis-full">
+              <div
+                className={clsx(
+                  "relative w-full overflow-hidden rounded-lg  aspect-square "
+                )}
+              >
+                <Image
+                  src={carpet.image}
+                  alt={carpet.title}
+                  fill
+                  className="object-cover transition duration-500 hover:scale-105"
+                />
+                <div className="absolute bottom-2 left-2 text-white bg-black/40 backdrop-blur-sm px-3 py-1 text-sm rounded-sm">
+                  {carpet.title}
+                </div>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
 
       <div className="mt-10">
         <Link href="/explore">
