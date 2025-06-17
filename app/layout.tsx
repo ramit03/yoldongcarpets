@@ -20,7 +20,7 @@ const outfit = Outfit({
 const playfair = Playfair_Display({
   variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {

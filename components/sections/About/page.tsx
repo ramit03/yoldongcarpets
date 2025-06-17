@@ -9,7 +9,7 @@ const About = () => {
         {/* Image Side */}
         <div className="w-full lg:w-1/2 relative h-[300px] lg:h-[400px] rounded-lg overflow-hidden">
           <Image
-            src="/herorug.jpg"
+            src="/about.jpg"
             alt="About Yoldong Carpets"
             fill
             className="object-cover"
