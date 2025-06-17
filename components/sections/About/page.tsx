@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 
 const About = () => {
   return (
-    <section className="px-6 lg:px-0 py-20 bg-gradient-to-b from-beige-light  to-beige-soft">
-      <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-10">
+    <section className="px-5 py-20 lg:px-20 lg:py-28 bg-gradient-to-b from-beige-light  to-beige-soft">
+      <div className=" mx-auto flex flex-col lg:flex-row items-center gap-10">
         {/* Image Side */}
         <div className="w-full lg:w-1/2 relative h-[300px] lg:h-[400px] rounded-lg overflow-hidden">
           <Image

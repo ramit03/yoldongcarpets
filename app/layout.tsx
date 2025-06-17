@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Outfit } from "next/font/google";
+import { Poppins, Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/sections/Header/page";
 import Footer from "@/components/sections/Footer/page";
@@ -12,6 +12,12 @@ const poppins = Poppins({
 
 // Load Outfit for body
 const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+});
+
+const playfair = Playfair_Display({
   variable: "--font-outfit",
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -30,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${outfit.className} antialiased bg-beige-light text-neutral-800`}
+        className={`${poppins.variable} ${playfair.className} ${outfit.className} antialiased bg-beige-light text-neutral-800`}
       >
         <Header />
         {children}

@@ -4,8 +4,8 @@ import React from "react";
 import Image from "next/image";
 const Contact = () => {
   return (
-    <section className="px-6 py-20 bg-gradient-to-b from-beige-soft to-beige-light">
-      <div className="max-w-6xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-10">
+    <section className="px-5 py-20 lg:px-20 lg:py-28 bg-gradient-to-b from-beige-soft to-beige-light">
+      <div className=" mx-auto flex flex-col-reverse lg:flex-row items-center gap-10">
         {/* Text Side */}
         <div className="w-full lg:w-1/2 flex flex-col gap-4">
           <h2>Get in Touch</h2>

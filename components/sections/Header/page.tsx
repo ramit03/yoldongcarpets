@@ -3,14 +3,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Icon } from "@iconify/react";
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -31,25 +24,34 @@ const Header = () => {
       }`}
     >
       <Image
-        src={"/logonobg.png"}
+        src={scrolled ? "/logonobg.png" : "/logowhite.png"}
         alt="Logo"
         width={150}
         height={100}
         className="object-cover"
       />
 
-      <div className="hidden lg:flex flex-row gap-8">
-        <Link className="text-xl" href={"/"}>
-          Explore
+      <div className="hidden text-lg font-medium lg:flex flex-row gap-8">
+        <Link
+          className={`${scrolled ? "text-beige-dark" : "text-white"}`}
+          href="/Gallery"
+        >
+          Gallery
         </Link>
-        <Link className="text-xl" href={"/"}>
+        <Link
+          className={`${scrolled ? "text-beige-dark" : "text-white"}`}
+          href="/about"
+        >
           About
         </Link>
-        <Link className="text-xl" href={"/"}>
+        <Link
+          className={`${scrolled ? "text-beige-dark" : "text-white"}`}
+          href="/contact"
+        >
           Contact
         </Link>
       </div>
-      <Button className="hidden lg:flex" size={"lg"}>
+      <Button className="hidden mr-0.5 lg:flex" size={"lg"}>
         Enquire
       </Button>
 
@@ -61,10 +63,16 @@ const Header = () => {
             </button>
           </SheetTrigger>
           <SheetContent side="right" className="w-full">
-            <nav className="flex flex-col gap-6 mt-10 px-5 pt-20 items-center">
-              <Link href="/explore">Explore</Link>
-              <Link href="/about">About</Link>
-              <Link href="/contact">Contact</Link>
+            <nav className="flex  flex-col gap-6 mt-10 px-5 pt-20 items-center">
+              <Link className="text-beige-dark" href="/explore">
+                Explore
+              </Link>
+              <Link className="text-beige-dark" href="/about">
+                About
+              </Link>
+              <Link className="text-beige-dark" href="/contact">
+                Contact
+              </Link>
               <Button size="lg" className="mt-4 w-full">
                 Enquire
               </Button>
