@@ -28,7 +28,7 @@ const Header = () => {
         alt="Logo"
         width={150}
         height={100}
-        className="object-cover"
+        className="object-cove"
       />
 
       <div className="hidden text-lg font-medium lg:flex flex-row gap-8">
@@ -59,7 +59,12 @@ const Header = () => {
         <Sheet>
           <SheetTrigger asChild>
             <button>
-              <Icon icon="mdi:menu" width="28" height="28" />
+              <Icon
+                icon="mdi:menu"
+                className={`${scrolled ? "text-black" : "text-white"}`}
+                width="28"
+                height="28"
+              />
             </button>
           </SheetTrigger>
           <SheetContent side="right" className="w-full">
