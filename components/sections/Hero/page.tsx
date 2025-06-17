@@ -25,7 +25,6 @@ const Hero = () => {
         <p className="max-w-xl mx-auto text-xl text-white mb-6">
           Woven in Nepal
         </p>
-        <Button variant="default">View Collection</Button>
       </div>
     </section>
   );

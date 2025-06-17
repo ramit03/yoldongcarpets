@@ -19,14 +19,14 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed z-30 top-0 w-full px-5 lg:px-20 py-5 flex flex-row justify-between items-center transition-colors duration-500 ${
+      className={`fixed z-50 top-0 w-full px-5 lg:px-20 py-5 flex flex-row justify-between items-center transition-colors duration-500 ${
         scrolled ? "bg-white shadow-sm" : "bg-transparent"
       }`}
     >
       <Image
         src={scrolled ? "/logonobg.png" : "/logowhite.png"}
         alt="Logo"
-        width={150}
+        width={120}
         height={100}
         className="object-cove"
       />
