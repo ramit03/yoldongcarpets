@@ -9,6 +9,10 @@ import { usePathname } from "next/navigation";
 const Header = () => {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => setOpen(false);
+
   const [scrolled, setScrolled] = useState(!isHome);
 
   useEffect(() => {
@@ -69,7 +73,7 @@ const Header = () => {
       </Button>
 
       <div className="lg:hidden">
-        <Sheet>
+        <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
             <button>
               <Icon
@@ -82,13 +86,25 @@ const Header = () => {
           </SheetTrigger>
           <SheetContent side="right" className="w-full">
             <nav className="flex  flex-col gap-6 mt-10 px-5 pt-20 items-center">
-              <Link className="text-beige-dark" href="/gallery">
+              <Link
+                href="/gallery"
+                onClick={handleClose}
+                className="text-beige-dark"
+              >
                 Gallery
               </Link>
-              <Link className="text-beige-dark" href="/about">
+              <Link
+                href="/about"
+                onClick={handleClose}
+                className="text-beige-dark"
+              >
                 About
               </Link>
-              <Link className="text-beige-dark" href="/contact">
+              <Link
+                href="/contact"
+                onClick={handleClose}
+                className="text-beige-dark"
+              >
                 Contact
               </Link>
               <Button size="lg" className="mt-4 w-full">
