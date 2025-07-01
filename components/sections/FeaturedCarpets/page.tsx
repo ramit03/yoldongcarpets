@@ -139,7 +139,7 @@ const Featured = () => {
       )}
 
       <div className="mt-10">
-        <Link href="/explore">
+        <Link href="/gallery">
           <Button size="lg" className="w-fit">
             Explore All
           </Button>
