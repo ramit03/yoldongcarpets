@@ -14,10 +14,8 @@ const LightBoxComponent = dynamic(() => import("@/components/ui/lightbox"), {
 });
 
 interface Carpet {
-  title: string;
   description: string;
   src: string;
-  alt: string;
 }
 
 interface GallerySliderProps {
@@ -42,13 +40,10 @@ const GallerySlider: React.FC<GallerySliderProps> = ({ items }) => {
               >
                 <Image
                   src={item.src}
-                  alt={item.title}
+                  alt={item.description}
                   fill
                   className="object-cover transition duration-500 group-hover:scale-105 pointer-events-none"
                 />
-                <div className="absolute bottom-2 left-2 text-white bg-black/40 px-3 py-1 text-sm rounded-sm">
-                  {item.title}
-                </div>
               </div>
             </CarouselItem>
           ))}

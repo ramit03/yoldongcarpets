@@ -1,54 +1,28 @@
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
 import React from "react";
-import Image from "next/image";
 import GallerySlider from "@/components/sections/GallerySlider/page";
-const tibetanCarpets = [
-  {
-    title: "Sunset Weave",
-    description: "A vibrant blend of colors inspired by the sunset.",
-    src: "/herorug.jpg",
-    alt: "Sunset",
-  },
-  {
-    title: "Mountain Mist",
-    description: "Cool tones evoking the serenity of Himalayan peaks.",
-    src: "/herorug.jpg",
-    alt: "Mountain Mist",
-  },
-  {
-    title: "Golden Horizon",
-    description: "Warm earth tones with fine traditional motifs.",
-    src: "/herorug.jpg",
-    alt: "Golden Horizon",
-  },
-];
+import { sanityClient } from "@/lib/sanity";
 
-const indianCarpets = [
-  {
-    title: "Desert Bloom",
-    description: "A blooming design rooted in Rajasthani heritage.",
-    src: "/herorug.jpg",
-    alt: "Desert Bloom",
-  },
-  {
-    title: "Monsoon Lotus",
-    description: "Water-inspired patterns with natural blue dyes.",
-    src: "/herorug.jpg",
-    alt: "Monsoon Lotus",
-  },
-  {
-    title: "Saffron Dreams",
-    description: "Rich reds and golds inspired by Indian spices.",
-    src: "/herorug.jpg",
-    alt: "Saffron Dreams",
-  },
-];
+type Carpet = {
+  description: string;
+  src: string;
+  category?: string;
+};
 
-const Gallery = () => {
+const tibetanQuery = `*[_type == "carpets"][0].carpet[category == "tibetan"]{
+    "src": image.asset->url,
+    "description" : desc,
+   
+  }`;
+
+const customQuery = `*[_type == "carpets"][0].carpet[category == "custom"]{
+    "src": image.asset->url,
+    "description" : desc,
+
+  }`;
+
+const Gallery = async () => {
+  const tibetanCarpets: Carpet[] = await sanityClient.fetch(tibetanQuery);
+  const customCarpets: Carpet[] = await sanityClient.fetch(customQuery);
   return (
     <main className="px-5 pt-32 pb-20 lg:px-20 lg:pt-40 lg:pb-28 flex flex-col gap-16">
       {/* Tibetan Carpets Section */}
@@ -68,10 +42,10 @@ const Gallery = () => {
         <GallerySlider items={tibetanCarpets} />
       </section>
 
-      {/* Indian Carpets Section */}
+      {/* Custome Carpets Section */}
       <section className="flex flex-col gap-6">
-        <h1>Indian Carpets</h1>
-        <GallerySlider items={indianCarpets} />
+        <h1>Made-to-Order Carpets</h1>
+        <GallerySlider items={customCarpets} />
       </section>
     </main>
   );

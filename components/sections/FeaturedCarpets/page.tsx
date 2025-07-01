@@ -12,47 +12,49 @@ import {
 import { useEffect, useMemo, useState } from "react";
 
 import dynamic from "next/dynamic";
+import { sanityClient } from "@/lib/sanity";
+import {
+  useQuery,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+
 const LightBoxComponent = dynamic(() => import("@/components/ui/lightbox"), {
   ssr: false,
 });
-// Carpet data
-const carpets = [
-  {
-    title: "Sunset Weave",
-    description: "A vibrant blend of colors inspired by the sunset.",
-    image: "/herorug.jpg",
-    alt: "Sunset",
-    col: 2,
-    row: 2,
-  },
-  {
-    title: "Midnight Bloom",
-    description: "A vibrant blend of colors inspired by the sunset.",
-    image: "/herorug.jpg",
-    alt: "Sunset",
-    col: 1,
-    row: 3,
-  },
-  {
-    title: "Golden Trail",
-    description: "A vibrant blend of colors inspired by the sunset.",
-    image: "/herorug.jpg",
-    alt: "Sunset",
-    col: 1,
-    row: 1,
-  },
-  {
-    title: "Dusky Earth",
-    alt: "Sunset",
-    description: "A vibrant blend of colors inspired by the sunset.",
-    image: "/herorug.jpg",
-    col: 1,
-    row: 1,
-  },
-];
 
-// Component
+const queryClient = new QueryClient();
+
+export interface Carpet {
+  image: string;
+  desc: string;
+  category?: string;
+  featured?: boolean;
+}
+
+const fetchFeaturedCarpets = async (): Promise<Carpet[]> => {
+  const query = `*[_type == "carpets"][0].carpet[featured == true]{
+    "image": image.asset->url,
+    desc,
+    category
+  }`;
+  return await sanityClient.fetch(query);
+};
+
 const FeaturedCarpets = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Featured />
+    </QueryClientProvider>
+  );
+};
+
+const Featured = () => {
+  const { data, isLoading } = useQuery<Carpet[]>({
+    queryKey: ["carpets"],
+    queryFn: fetchFeaturedCarpets,
+  });
+
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
@@ -60,15 +62,19 @@ const FeaturedCarpets = () => {
   useEffect(() => {
     setMounted(true);
   }, []);
+
   const slides = useMemo(
     () =>
-      carpets.map((carpet) => ({
+      (data ?? []).map((carpet) => ({
         src: carpet.image,
-        title: carpet.title,
-        description: carpet.description,
+        title: carpet.desc,
+        description: carpet.desc,
       })),
-    []
+    [data]
   );
+
+  if (isLoading) return <p className="px-5 py-10">Loading...</p>;
+
   return (
     <section className="px-5 py-20 lg:px-20 lg:py-28 flex flex-col gap-8 lg:gap-12">
       <h1>Featured Carpets</h1>
@@ -109,20 +115,13 @@ const FeaturedCarpets = () => {
                 setOpen(true);
               }}
             >
-              <div
-                className={clsx(
-                  "relative w-full overflow-hidden rounded-lg  aspect-square "
-                )}
-              >
+              <div className="relative w-full overflow-hidden rounded-lg aspect-square">
                 <Image
                   src={carpet.src}
                   alt={carpet.title}
                   fill
                   className="object-cover transition duration-500 hover:scale-105 pointer-events-none"
                 />
-                <div className="absolute bottom-2 left-2 text-white bg-black/40 backdrop-blur-sm px-3 py-1 text-sm rounded-sm">
-                  {carpet.title}
-                </div>
               </div>
             </CarouselItem>
           ))}
@@ -132,9 +131,7 @@ const FeaturedCarpets = () => {
       {mounted && (
         <LightBoxComponent
           open={open}
-          close={() => {
-            setOpen(false);
-          }}
+          close={() => setOpen(false)}
           slides={slides}
           index={index}
           setIndex={setIndex}

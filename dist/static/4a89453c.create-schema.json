@@ -1,0 +1,73 @@
+[
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "name": "image",
+                "type": "image"
+              },
+              {
+                "name": "desc",
+                "type": "string",
+                "title": "Description"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Tibetan",
+                      "value": "tibetan"
+                    },
+                    {
+                      "title": "Custom",
+                      "value": "custom"
+                    }
+                  ],
+                  "layout": "radio"
+                },
+                "name": "category",
+                "type": "string"
+              },
+              {
+                "initialValue": false,
+                "name": "featured",
+                "type": "boolean",
+                "title": "Featured?"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "carpet",
+        "type": "array"
+      }
+    ],
+    "name": "carpets",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "Hero Image"
+      },
+      {
+        "name": "desc",
+        "type": "string",
+        "title": "Description"
+      }
+    ],
+    "name": "heroImage",
+    "type": "document"
+  }
+]
