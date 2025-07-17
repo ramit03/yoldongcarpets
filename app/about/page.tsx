@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 // const sections = [
 //   {
 //     title: "Who We Are",
@@ -104,9 +106,8 @@ const About = () => {
           Have a question or need more information? Reach out to us and
           we&apos;ll be happy to assist you.
         </p>
-        <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
-          Contact Us
-        </button>
+        <Link href={"/contact"}></Link>
+        <Button>Contact Us</Button>
       </section>
     </main>
   );
