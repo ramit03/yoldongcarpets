@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,13 +19,7 @@ import { Input } from "@/components/ui/input";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 const formSchema = z.object({
   name: z.string().min(1, { message: "Please enter your name" }),
   email: z
@@ -36,23 +30,43 @@ const formSchema = z.object({
 });
 
 export default function ContactForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      console.log(values);
-      toast(
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>
-      );
+      setIsSubmitting(true);
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        console.error("Failed to send message");
+        setIsSubmitting(false);
+        return;
+      }
+
+      setIsSubmitted(true);
+      form.reset();
     } catch (error) {
       console.error("Form submission error", error);
-      toast.error("Failed to submit the form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   }
+
+  useEffect(() => {
+    if (isSubmitted) {
+      toast.success("Thank you! Your message has been sent.");
+    }
+  }, [isSubmitted]);
 
   return (
     <Card className="mx-auto w-full">
@@ -92,21 +106,6 @@ export default function ContactForm() {
               )}
             />
 
-            {/* <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem className="flex flex-col items-start">
-                  <FormLabel>Phone number</FormLabel>
-                  <FormControl className="w-full">
-                    <PhoneInput placeholder="" {...field} defaultCountry="TR" />
-                  </FormControl>
-                  <FormDescription>Enter your phone number.</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
-
             <FormField
               control={form.control}
               name="message"
@@ -125,8 +124,12 @@ export default function ContactForm() {
                 </FormItem>
               )}
             />
-            <Button className="cursor-pointer" type="submit">
-              Submit
+            <Button
+              className="cursor-pointer"
+              type="submit"
+              disabled={isSubmitting || isSubmitted}
+            >
+              {isSubmitting ? "Submitting..." : "Submit"}
             </Button>
           </form>
         </Form>

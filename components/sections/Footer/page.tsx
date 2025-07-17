@@ -7,7 +7,9 @@ const Footer = () => {
     <footer className=" px-5 py-16 lg:px-20  bg-white">
       <div className="flex gap-7 flex-col lg:flex-row items-center justify-center">
         <div className="flex flex-col gap-3 lg:gap-8">
-          <h1 className="font-playfair text-black">Yoldong Carpets</h1>
+          <h1 className="text-[36px] lg:text-[50px] font-playfair text-black">
+            Yoldong Carpets
+          </h1>
           <div className="flex flex-col justify-center lg:flex-row gap-3 px-4">
             <div className="flex flex-row gap-2 items-center">
               <Icon icon="ic:outline-email" fontSize={22} />

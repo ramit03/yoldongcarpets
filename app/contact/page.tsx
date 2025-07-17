@@ -4,7 +4,7 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <main className="pt-32 pb-20 lg:pt-40 lg:pb-28 px-5 lg:px-20">
+    <main className="pt-32 pb-20 lg:pt-40 min-h-[70svh] lg:pb-28 px-5 lg:px-20">
       <div className="w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
         {/* Left: Contact Info */}
         <div className="flex flex-col gap-8">

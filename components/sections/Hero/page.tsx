@@ -9,7 +9,6 @@ desc}`;
 
 const Hero = async () => {
   const data: HeroImage = await sanityClient.fetch(query);
-  console.log("Hero data:", data);
   return (
     <section className="relative w-ful h-[100dvh] flex items-center justify-center text-center overflow-hidden">
       {/* Background with padding */}

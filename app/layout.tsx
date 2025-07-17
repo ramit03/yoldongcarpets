@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${playfair.className} ${outfit.className} antialiased bg-beige-light text-neutral-800`}
+        className={`${poppins.variable} ${playfair.variable} ${outfit.variable} antialiased bg-beige-light text-neutral-800`}
       >
         <Header />
         {children}
