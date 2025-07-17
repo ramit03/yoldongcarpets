@@ -2,6 +2,7 @@
 import Lightbox, { Slide } from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Captions from "yet-another-react-lightbox/plugins/captions";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 // Define breakpoints for responsive loading
@@ -30,7 +31,7 @@ export default function LightBoxComponent({
       slides={slides}
       close={close}
       open={open}
-      plugins={[Captions]}
+      plugins={[Captions, Zoom]}
       index={index}
       on={{ view: ({ index: current }) => setIndex(current) }}
     />
