@@ -1,4 +1,5 @@
 import ContactForm from "@/components/sections/ContactForm/page";
+import { Card, CardContent } from "@/components/ui/card";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import React from "react";
 
@@ -18,7 +19,7 @@ const Contact = () => {
           <div className="flex flex-col gap-4 ">
             <div className="flex flex-row gap-2 items-center">
               <Icon icon="ic:outline-email" fontSize={22} />
-              <p className="text-xl">email@email.com</p>
+              <p className="text-xl">sonam@yoldongcarpets.com</p>
             </div>
             <div className="flex flex-row gap-2 items-center">
               <Icon icon="ic:baseline-phone" fontSize={22} />
@@ -26,7 +27,12 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <ContactForm />
+        <Card>
+          <CardContent>
+            <ContactForm />
+          </CardContent>
+        </Card>
+
         {/* Right: Form */}
       </div>
     </main>

@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -17,8 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
-import { Card, CardContent } from "@/components/ui/card";
+
 const formSchema = z.object({
   name: z.string().min(1, { message: "Please enter your name" }),
   email: z
@@ -61,19 +59,18 @@ export default function ContactForm() {
     }
   }
 
-  useEffect(() => {
-    if (isSubmitted) {
-      toast.success("Thank you! Your message has been sent.");
-    }
-  }, [isSubmitted]);
-
   return (
-    <Card className="mx-auto w-full">
-      <CardContent>
+    <>
+      {isSubmitted ? (
+        <div className="py-10 text-center flex flex-col gap-8">
+          <h3>Thank you for reaching out!</h3>
+          <p>We have received your message and will get back to you shortly.</p>
+        </div>
+      ) : (
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-8 max-w-3xl mx-auto py-10"
+            className="space-y-8 w-full mx-auto py-10"
           >
             <FormField
               control={form.control}
@@ -132,7 +129,7 @@ export default function ContactForm() {
             </Button>
           </form>
         </Form>
-      </CardContent>
-    </Card>
+      )}
+    </>
   );
 }

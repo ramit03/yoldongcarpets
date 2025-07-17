@@ -10,9 +10,8 @@ const Contact = () => {
         <div className="w-full lg:w-1/2 flex flex-col gap-4">
           <h2>Get in Touch</h2>
           <p>
-            Whether you're looking for a custom piece, have a question about our
-            collection, or want to visit our workshop — we're always happy to
-            connect.
+            Whether you're looking for a custom piece or have a question about
+            our collection — we're always happy to connect.
           </p>
 
           <div className="mt-4">

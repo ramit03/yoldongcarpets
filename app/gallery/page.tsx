@@ -8,21 +8,14 @@ type Carpet = {
   category?: string;
 };
 
-const tibetanQuery = `*[_type == "carpets"][0].carpet[category == "tibetan"]{
+const allCarpetsQuery = `*[_type == "carpets"][0].carpet[]{
     "src": image.asset->url,
     "description" : desc,
-   
-  }`;
-
-const customQuery = `*[_type == "carpets"][0].carpet[category == "custom"]{
-    "src": image.asset->url,
-    "description" : desc,
-
+    "category": category
   }`;
 
 const Gallery = async () => {
-  const tibetanCarpets: Carpet[] = await sanityClient.fetch(tibetanQuery);
-  const customCarpets: Carpet[] = await sanityClient.fetch(customQuery);
+  const allCarpets: Carpet[] = await sanityClient.fetch(allCarpetsQuery);
   return (
     <main className="px-5 pt-32 pb-20 lg:px-20 lg:pt-40 lg:pb-28 flex flex-col gap-16">
       {/* Tibetan Carpets Section */}
@@ -38,14 +31,7 @@ const Gallery = async () => {
       </section>
 
       <section className="flex flex-col gap-6">
-        <h1>Tibetan Carpets</h1>
-        <GallerySlider items={tibetanCarpets} />
-      </section>
-
-      {/* Custome Carpets Section */}
-      <section className="flex flex-col gap-6">
-        <h1>Made-to-Order Carpets</h1>
-        <GallerySlider items={customCarpets} />
+        <GallerySlider items={allCarpets} />
       </section>
     </main>
   );

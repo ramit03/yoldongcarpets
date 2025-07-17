@@ -79,12 +79,10 @@ const About = () => {
 
       {/* CTA */}
       <section className="px-5 lg:px-20 text-center flex flex-col items-center gap-6">
-        <h2 className="text-3xl font-playfair font-semibold">
-          Visit Our Studio
-        </h2>
-        <p className="text-muted-foreground max-w-xl">
-          Experience the artistry in person. Our doors are always open to those
-          curious about the craft.
+        <h2 className="text-3xl font-playfair font-semibold">Get in Touch</h2>
+        <p className=" max-w-xl">
+          Have a question or need more information? Reach out to us and
+          we&apos;ll be happy to assist you.
         </p>
         <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
           Contact Us

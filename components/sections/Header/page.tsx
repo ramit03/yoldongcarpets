@@ -6,6 +6,15 @@ import React, { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import ContactForm from "../ContactForm/page";
 const Header = () => {
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -68,9 +77,23 @@ const Header = () => {
           Contact
         </Link>
       </div>
-      <Button className="hidden mr-0.5 lg:flex" size={"lg"}>
-        Enquire
-      </Button>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button size="lg" className="mt-4 w-auto hidden lg:block">
+            Enquire
+          </Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Make an Enquiry</DialogTitle>
+            <DialogDescription>
+              Fill out the form below for any queries, custom orders, or
+              assistance. Our team will respond as soon as possible.
+            </DialogDescription>
+          </DialogHeader>
+          <ContactForm />
+        </DialogContent>
+      </Dialog>
 
       <div className="lg:hidden">
         <Sheet open={open} onOpenChange={setOpen}>
@@ -107,9 +130,23 @@ const Header = () => {
               >
                 Contact
               </Link>
-              <Button size="lg" className="mt-4 w-full">
-                Enquire
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="lg" className="mt-4 w-full">
+                    Enquire
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Make an Enquiry</DialogTitle>
+                    <DialogDescription>
+                      Fill out the form below for any queries, custom orders, or
+                      assistance. Our team will respond as soon as possible.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <ContactForm />
+                </DialogContent>
+              </Dialog>
             </nav>
           </SheetContent>
         </Sheet>

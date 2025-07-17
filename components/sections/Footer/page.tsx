@@ -4,10 +4,10 @@ import { Icon } from "@iconify/react";
 import { SocialIcon } from "react-social-icons";
 const Footer = () => {
   return (
-    <footer className=" px-5 py-16 lg:px-20  bg-white">
+    <footer className=" px-5 py-8 lg:py-16 lg:px-20  bg-white">
       <div className="flex gap-7 flex-col lg:flex-row items-center justify-center">
         <div className="flex flex-col items-center gap-3 lg:gap-8">
-          <h1 className="text-[36px] lg:text-[50px] font-playfair text-black">
+          <h1 className="text-[28px] lg:text-[50px] font-playfair text-black">
             Yoldong Carpets
           </h1>
           <div className="flex flex-col justify-center lg:flex-row gap-3 px-4">

@@ -67,7 +67,7 @@ const Featured = () => {
     () =>
       (data ?? []).map((carpet) => ({
         src: carpet.image,
-        title: carpet.desc,
+
         description: carpet.desc,
       })),
     [data]
@@ -93,13 +93,10 @@ const Featured = () => {
           >
             <Image
               src={carpet.src}
-              alt={carpet.title}
+              alt={carpet.description}
               fill
               className="object-cover transition duration-500 group-hover:scale-105 pointer-events-none"
             />
-            <div className="absolute bottom-2 left-2 text-white bg-black/40 backdrop-blur-sm px-3 py-1 text-sm rounded-sm">
-              {carpet.title}
-            </div>
           </div>
         ))}
       </div>
@@ -118,7 +115,7 @@ const Featured = () => {
               <div className="relative w-full overflow-hidden rounded-lg aspect-square">
                 <Image
                   src={carpet.src}
-                  alt={carpet.title}
+                  alt={carpet.description}
                   fill
                   className="object-cover transition duration-500 hover:scale-105 pointer-events-none"
                 />
